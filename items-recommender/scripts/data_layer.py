@@ -65,10 +65,10 @@ class Formation:
         Returns:
             None
         """
-        dic_users = {}
-        for user in self.transactions.customerId.unique():
-            dic_users[user] = self.purchase_frequency(user)
-
+        dic_users = {
+            user: self.purchase_frequency(user)
+            for user in self.transactions.customerId.unique()
+        }
         self.matrix_user_items = np.array(pd.DataFrame(dic_users).T.fillna(0))
 
 
